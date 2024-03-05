@@ -11,8 +11,8 @@ const Header = () => {
         <input type="text" placeholder="Search" className='border-2 border-purple-800 rounded ml-[160px] w-[250px] h-[30px] text-center'/>
       </section>
       <nav className='flex w-[1000px] mx-auto p-[15px] items-center text-white bg-blue-900'>
-        <ul className='flex'>
-          <li>게시판 목록</li>
+        <ul className='flex w-[1000px] justify-between'>
+          <Link to='/'><li>게시판 목록</li></Link>
           <li>로그인</li>
         </ul>
       </nav>

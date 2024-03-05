@@ -1,9 +1,12 @@
 import React, { useRef, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 import { setDoc, doc } from "firebase/firestore";
 
 const WritingPage = (props) => {
+
+  const navigate = useNavigate();
+
   let nameRef = useRef();
   let passwordRef = useRef();
   let titleRef = useRef();
@@ -13,6 +16,7 @@ const WritingPage = (props) => {
   let [searchParams] = useSearchParams();
   let id = searchParams.get("id");
   console.log(id);
+  let randomNum = Math.random().toString();
 
 
 
@@ -24,12 +28,13 @@ const WritingPage = (props) => {
     let tag = tagRef.current.value;
     let content = contentRef.current.value;
 
-    await setDoc(doc(db, id, Math.random().toString()), {
+    await setDoc(doc(db, id, randomNum), {
       name: name,
       password: password,
       title: title,
       tag: tag,
       content: content,
+      forDiv: randomNum,
       dateForSort: new Date(),
       date: new Date().toLocaleDateString(),
       hour: new Date().toLocaleTimeString(),
@@ -40,6 +45,7 @@ const WritingPage = (props) => {
     titleRef.current.value = "";
     tagRef.current.value = "";
     contentRef.current.value = "";
+    navigate(`/board/list?id=${id}`);
   }
 
   return (
