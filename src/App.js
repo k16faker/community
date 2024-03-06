@@ -1,13 +1,13 @@
-import { BrowserRouter, createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 
 
 import RootPage from './pages/RootPage';
 
 import './App.css';
 import BoardListPage from './pages/BoardListPage';
-import BoardPage from './pages/BoardPage';
 import MainPage from './pages/MainPage';
 import WritingPage from './pages/WritingPage';
+import DetailPage from './pages/DetailPage';
 
 function App() {
 
@@ -31,8 +31,12 @@ function App() {
             },
             {
               path:'list',
-              element: <BoardListPage />
-            }
+              element: <BoardListPage />,
+            },
+            {
+              path: 'detail',
+              element: <DetailPage />
+            },
           ]
         },
       ],
