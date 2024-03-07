@@ -20,13 +20,19 @@ const List = ({ id }) => {
     fetchData(id, "dateForSort", "desc");
   }, [id]);
 
+  const handleClick = () => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 0);
+  };
+
 
 
   return (
     <ul>
         {data.map((doc) => (
           <li key={doc.id}>
-            <Link to={`/board/detail?id=${id}&no=${doc.forDiv}`}>
+            <Link to={`/board/detail?id=${id}&no=${doc.forDiv}`}onClick={handleClick} >
               <SimpleWr title={doc.title} date={doc.date} writer={doc.name} hour={doc.hour} /> 
             </Link>
           </li>

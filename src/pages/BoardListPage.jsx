@@ -13,23 +13,7 @@ const BoardListPage = () => {
   // let [data, setData] = useState([]);
   let [searchParams] = useSearchParams();
   let id = searchParams.get("id");
-
-  // const fetchData = async (collectionName, order, sort) => {
-  //   const q = query(collection(db, collectionName), orderBy(order, sort));
-  //   const dataSnapShot = await getDocs(q);
-  //   const data = dataSnapShot.docs.map((doc) => {
-  //     return { ...doc.data(), id: doc.id };
-  //   });
-  //   console.log(data);
-  //   setData(data);
-  // };
-
-  // useEffect(() => {
-  //   fetchData(id, "dateForSort", "desc");
-  // }, [id]);
-
   
-
 
 
 

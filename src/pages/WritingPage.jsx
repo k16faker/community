@@ -35,16 +35,13 @@ const WritingPage = (props) => {
       tag: tag,
       content: content,
       forDiv: randomNum,
+      good: 0,
+      bad: 0,
       dateForSort: new Date(),
       date: new Date().toLocaleDateString(),
       hour: new Date().toLocaleTimeString(),
     });
     alert("작성 완료");
-    nameRef.current.value = "";
-    passwordRef.current.value = "";
-    titleRef.current.value = "";
-    tagRef.current.value = "";
-    contentRef.current.value = "";
     navigate(`/board/list?id=${id}`);
   }
 
