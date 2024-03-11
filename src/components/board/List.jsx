@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 const List = ({ id }) => {
   let [data, setData] = useState([]);
+  let [goodSortData, setGoodSortData] = useState([]);
+
 
   const fetchData = async (collectionName, order, sort) => {
     const q = query(collection(db, collectionName), orderBy(order, sort));

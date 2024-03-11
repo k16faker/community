@@ -58,12 +58,14 @@ const WritingPage = (props) => {
               placeholder="이름"
               className="w-[200px] border border-slate-700 text-center"
               ref={nameRef}
+              required
             />
             <input
               type="password"
               placeholder="비밀번호"
               className="w-[200px] ml-[20px] border border-slate-700 text-center"
               ref={passwordRef}
+              required
             />
           </div>
           <input
@@ -71,9 +73,9 @@ const WritingPage = (props) => {
             placeholder="제목"
             className="w-full my-2 border border-slate-700 text-center"
             ref={titleRef}
+            required
           />
           <select ref={tagRef}>
-            <option>말머리</option>
             <option>자유</option>
             <option>질문</option>
             <option>정보</option>
@@ -84,6 +86,7 @@ const WritingPage = (props) => {
           rows={20}
           className="mt-[5px] mb-[20px] border border-slate-700 text-center"
           ref={contentRef}
+          required
         ></textarea>
         <button>작성</button>
       </form>
