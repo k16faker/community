@@ -18,8 +18,10 @@ const BoardListPage = () => {
 
 
   return (
-    <div className='w-[1000px] mx-auto mt-[50px]'>
-      <List id={id} />
+    <div className='w-[1160px] mx-auto mt-[50px]'>
+      <section className='w-[1160px]'>
+        <List id={id} />
+      </section>
       <div className='w-full'>
         <Link to={`/board/writing?id=${id}`}><button className='border mt-[20px] mx-auto w-[80px] h-[40px] border-blue-900 text-white bg-blue-900'>글쓰기</button></Link>
       </div>

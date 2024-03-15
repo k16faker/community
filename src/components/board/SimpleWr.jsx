@@ -11,7 +11,7 @@ const SimpleWr = ({title, date, writer, hour}) => {
 
 
   return (
-    <div className='flex border w-[1000px] h-[30px] px-2 justify-between items-center'>
+    <div className='flex border w-[800px] h-[30px] px-2 justify-between items-center'>
       <h1>{title}</h1>
       <div className='flex w-[200px] justify-between'>
         <p>{writer}</p>
