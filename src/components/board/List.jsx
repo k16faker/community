@@ -92,10 +92,6 @@ const List = ({ id }) => {
           <li key={doc.id}>
             <Link
               to={`/board/detail?id=${id}&no=${doc.forDiv}`}
-              onClick={(e) => {
-                e.preventDefault();
-                paginate(index + 1); // 페이지 번호는 1부터 시작하므로 index에 1을 더합니다.
-              }}
             >
               <SimpleWr
                 title={doc.title}
