@@ -3,7 +3,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+
 const Header = () => {
+
+  const searchClick = (e) => {
+    e.preventDefault();
+  }
+
   return (
     <header className='w-full h-[105px] items-center'>
       <section className='flex w-[1160px] mx-auto p-[15px] items-center'>

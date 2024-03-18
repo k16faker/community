@@ -98,6 +98,7 @@ const List = ({ id }) => {
                 date={doc.date}
                 writer={doc.name}
                 hour={doc.hour}
+                tag={doc.tag}
               />
             </Link>
           </li>

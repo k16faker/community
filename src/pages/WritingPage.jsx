@@ -88,7 +88,7 @@ const WritingPage = (props) => {
           ref={contentRef}
           required
         ></textarea>
-        <button>작성</button>
+        <button className="w-[80px] mx-auto px-2 py-1 bg-sky-700 rounded-md text-white hover:scale-110 transition-all">작성</button>
       </form>
     </section>
   );
