@@ -54,7 +54,7 @@ const DetailWr = ({ id, no }) => {
           <div className="w-[80px] border-r-2 text-center border-slate-500">
             <p className="">{detail.name}</p>
           </div>
-          <div className="flex w-[180px] justify-between">
+          <div className="flex w-[200px] justify-between">
             <p>{detail.date}</p>
             <p>{detail.hour}</p>
           </div>

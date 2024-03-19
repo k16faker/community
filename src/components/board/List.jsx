@@ -61,6 +61,7 @@ import { Link } from "react-router-dom";
 
 const List = ({ id }) => {
   const [data, setData] = useState([]);
+  const [tagForFilter, setTagForFilter] = useState("전체"); // 태그 필터링을 위한 상태
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5); // 페이지당 항목 수
 
@@ -77,16 +78,31 @@ const List = ({ id }) => {
     setData(newData);
   };
 
+  // 태그 필터링을 위한 데이터를 계산하는 함수
+  const dataForFilter = data.filter((item) => {
+    if (tagForFilter === "전체") {
+      return item;
+    } else {
+      return item.tag === tagForFilter;
+    }
+  });
+
   // 현재 페이지의 데이터를 계산하는 함수
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = dataForFilter.slice(indexOfFirstItem, indexOfLastItem);
 
   // 페이지 변경 이벤트 처리 함수
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="w-[800px]">
+      <ul className="flex">
+        <li className="border px-2 py-1 hover:cursor-pointer" onClick={()=>setTagForFilter("전체")}>전체</li>
+        <li className="border px-2 py-1 hover:cursor-pointer" onClick={()=>setTagForFilter("자유")}>자유</li>
+        <li className="border px-2 py-1 hover:cursor-pointer" onClick={()=>setTagForFilter("질문")}>질문</li>
+        <li className="border px-2 py-1 hover:cursor-pointer" onClick={()=>setTagForFilter("정보")}>정보</li>
+      </ul>
       <ul>
         {currentItems.map((doc, index) => (
           <li key={doc.id}>
@@ -107,7 +123,7 @@ const List = ({ id }) => {
       {/* 페이지 네이션 버튼 */}
       <Pagination
         itemsPerPage={itemsPerPage}
-        totalItems={data.length}
+        totalItems={dataForFilter.length}
         paginate={paginate}
       />
     </div>
