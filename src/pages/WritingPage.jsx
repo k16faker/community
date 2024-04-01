@@ -26,7 +26,7 @@ const WritingPage = (props) => {
     let password = passwordRef.current.value;
     let title = titleRef.current.value;
     let tag = tagRef.current.value;
-    let content = contentRef.current.value;
+    let content = contentRef.current.value.replace(/\n/g, "<br>");
 
     await setDoc(doc(db, id, randomNum), {
       name: name,

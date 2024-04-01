@@ -20,6 +20,12 @@ const DetailWr = ({ id, no }) => {
     }
   };
 
+  const convertNewLine = (content) => {
+    return content.split("<br>").map((line, index) => {
+      return <p key={index}>{line}</p>;
+    });
+  };
+
   const goodUpdateHandler = async () => {
     if (localStorage.getItem(`good${no}`)) {
       return alert("이미 좋아요를 누르셨습니다.");
@@ -85,7 +91,7 @@ const DetailWr = ({ id, no }) => {
         </div>
       </section>
       <article className="w-full mt-[30px] border-b-2 border-slate-300 pb-[30px]">
-        <p>{detail.content}</p>
+        <p>{detail.content && convertNewLine(detail.content)}</p>
         <div className="flex w-[200px] mx-auto justify-between mt-[100px]">
           <div>
             <button
