@@ -148,7 +148,6 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
                 paginate(number);
               }}
               href="/"
-              className="page-link"
             >
               {number}
             </a>

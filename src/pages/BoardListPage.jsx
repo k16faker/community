@@ -23,7 +23,7 @@ const BoardListPage = () => {
         <List id={id} />
       </section>
       <div className='w-full'>
-        <Link to={`/board/writing?id=${id}`}><button className='border mt-[20px] mx-auto w-[80px] h-[40px] border-blue-900 text-white bg-blue-900'>글쓰기</button></Link>
+        <Link to={`/board/writing?id=${id}`} className='ml-[720px]'><button className='border mt-[20px] mx-auto w-[80px] h-[40px] border-blue-900 text-white bg-blue-900'>글쓰기</button></Link>
       </div>
     </div>
   )
