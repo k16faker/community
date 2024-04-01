@@ -7,6 +7,8 @@ import BoardListPage from './pages/BoardListPage';
 import MainPage from './pages/MainPage';
 import WritingPage from './pages/WritingPage';
 import DetailPage from './pages/DetailPage';
+import Modify from './components/board/Modify';
+import ModifyPage from './pages/ModifyPage';
 
 function App() {
 
@@ -36,6 +38,10 @@ function App() {
               path: 'detail',
               element: <DetailPage />
             },
+            {
+              path:'modify',
+              element: <ModifyPage />
+            }
           ]
         },
       ],

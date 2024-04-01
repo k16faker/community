@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { getDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const DetailWr = ({ id, no }) => {
+  const navigate = useNavigate();
   const { location } = useLocation();
   const [detail, setDetail] = useState({});
   const [password, setPassword] = useState("");
@@ -55,6 +56,13 @@ const DetailWr = ({ id, no }) => {
     window.location.href = `/board/list?id=${id}`;
   }
 
+  const goToModify = () => {
+    if(password !== detail.password) {
+      return alert("비밀번호가 틀렸습니다.");
+    }
+    navigate(`/board/modify?id=${id}&no=${no}`);
+  }
+
 
   useEffect(() => {
     getDetail();
@@ -103,6 +111,7 @@ const DetailWr = ({ id, no }) => {
         <div>
           <input type="password" placeholder="비밀번호를 입력해주세요" onChange={handlePassword} className="border border-black text-center" />
           <button onClick={deleteHandler} className="border bg-sky-700 p-2 ml-2 text-white rounded-md">삭제</button>
+          <button onClick={goToModify} className="border bg-sky-700 p-2 ml-2 text-white rounded-md">수정</button>
         </div>
       </section>
     </div>
