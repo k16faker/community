@@ -34,7 +34,7 @@ const Modify = () => {
     await updateDoc(doc(db, id, no), {
       title: titleRef.current.value,
       tag: tagRef.current.value,
-      content: contentRef.current.value,
+      content: contentRef.current.value.replace(/\n/g, "<br>"),
     });
     alert("수정되었습니다.");
     window.location.href = `/board/detail?id=${id}&no=${no}`;
@@ -86,7 +86,7 @@ const Modify = () => {
         </section>
         <textarea
           placeholder="내용"
-          value={detail.content}
+          value={detail.content && detail.content.replace(/<br>/g, "\n")}
           onChange={contentChange}
           ref={contentRef}
           rows={20}
