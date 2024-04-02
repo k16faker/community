@@ -19,7 +19,7 @@ const Header = () => {
       <nav className='flex w-[1160px] mx-auto p-[15px] items-center text-white bg-blue-900'>
         <ul className='flex w-[1160px] justify-between'>
           <Link to='/'><li>게시판 목록</li></Link>
-          <li>로그인</li>
+          <Link to='/login'><li>로그인</li></Link>
         </ul>
       </nav>
     </header>

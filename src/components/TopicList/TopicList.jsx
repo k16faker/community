@@ -1,3 +1,6 @@
+//게시판 주제 리스트
+
+
 import { Link } from "react-router-dom";
 
 const topicList = [

@@ -1,7 +1,10 @@
+//글 수정 페이지
+
+
 import React, { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { db } from "../../firebase";
-import { getDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
 
 const Modify = () => {
   let [searchParams] = useSearchParams({

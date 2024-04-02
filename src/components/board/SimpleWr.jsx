@@ -1,5 +1,5 @@
 
-
+//리스트에 표시되는 간단한 글 컴포넌트
 
 
 import React from 'react'

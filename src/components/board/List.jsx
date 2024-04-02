@@ -53,6 +53,9 @@
 
 // export default List;
 
+
+//글 리스트 나열 페이지
+
 import React, { useState, useEffect } from "react";
 import { db } from "../../firebase";
 import { collection, query, getDocs, orderBy } from "firebase/firestore";

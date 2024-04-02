@@ -1,11 +1,13 @@
+//리스트에서 제목을 클릭하면 해당 글의 상세 내용을 볼 수 있는 페이지
+
+
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { getDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const DetailWr = ({ id, no }) => {
   const navigate = useNavigate();
-  const { location } = useLocation();
   const [detail, setDetail] = useState({});
   const [password, setPassword] = useState("");
 
@@ -72,7 +74,7 @@ const DetailWr = ({ id, no }) => {
 
   useEffect(() => {
     getDetail();
-  }, [location]);
+  }, []);
 
   return (
     <div className="w-[1000px] mt-[20px] mb-[50px]">
