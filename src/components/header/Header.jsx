@@ -1,14 +1,24 @@
 
 
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { UserAuth } from '../../context/AuthContext'
 
 
 const Header = () => {
+  const navigate = useNavigate();
 
-  const searchClick = (e) => {
-    e.preventDefault();
-  }
+
+  const { user, logOut } = UserAuth();
+
+  const handleLogOut = async () => {
+    try {
+      await logOut();
+      navigate('/');
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <header className='w-full h-[105px] items-center'>
@@ -19,7 +29,11 @@ const Header = () => {
       <nav className='flex w-[1160px] mx-auto p-[15px] items-center text-white bg-blue-900'>
         <ul className='flex w-[1160px] justify-between'>
           <Link to='/'><li>게시판 목록</li></Link>
-          <Link to='/login'><li>로그인</li></Link>
+          {user?.email ? (
+            <li className='hover:cursor-pointer' onClick={handleLogOut}>로그아웃</li>
+          ) : (
+            <Link to='/login'><li>로그인</li></Link>
+          )}
         </ul>
       </nav>
     </header>

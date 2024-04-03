@@ -8,7 +8,7 @@ const SignupForm = () => {
     navigate("/login");
   };
 
-  const { user, signUp} = UserAuth();
+  const { user, signUp } = UserAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
@@ -22,7 +22,7 @@ const SignupForm = () => {
         return;
       };
       alert("회원가입이 완료되었습니다.");
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.error(error);
     }
