@@ -24,6 +24,8 @@ updateDoc을 이용해 업데이트.
 
 - 좋아요/싫어요 기능 : 글을 작성할 때 문서 필드에 좋아요/싫어요 0으로 작성, 이후 좋아요/싫어요를 한번 누르면 숫자 상승 & localStorage에 글 no+good/bad 저장. 다시한번 누르면 localstorage 확인 후 누른 기록이 있으면 반영 x.
 
+- 로그인 기능 : Firebase Authentication을 이용해 email 회원가입 및 로그인. 로그인 상태는 contextAPI로 구현. user의 uid에 따른 닉네임 확인 기능 추가예정
+
 
 
 # 호스팅 주소
