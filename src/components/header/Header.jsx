@@ -24,7 +24,11 @@ const Header = () => {
           setNickname(docSnap.data().nickname);
         }
       }
-      getUser();
+      try {
+        getUser();
+      } catch(error) {
+        console.error(error);
+      }
     }
   }, [user]);
 
@@ -47,7 +51,7 @@ const Header = () => {
       <nav className='flex w-[1160px] mx-auto p-[15px] items-center text-white bg-blue-900'>
         <ul className='flex w-[1160px] justify-between'>
           <Link to='/'><li>게시판 목록</li></Link>
-          <p>{`어서오세요, ${nickname} 님`}</p>
+          {user?.email ? (<p>{`어서오세요, ${nickname} 님`}</p>) : ("")}
           {user?.email ? (
             <li className='hover:cursor-pointer' onClick={handleLogOut}>로그아웃</li>
           ) : (
