@@ -40,6 +40,7 @@ const WritingPage = (props) => {
       dateForSort: new Date(),
       date: new Date().toLocaleDateString(),
       hour: new Date().toLocaleTimeString(),
+      comments:[],
     });
     alert("작성 완료");
     navigate(`/board/list?id=${id}`);

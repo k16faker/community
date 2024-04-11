@@ -2,6 +2,8 @@ import React, {useEffect} from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import DetailWr from "../components/board/DetailWr";
 import List from "../components/board/List";
+import CommentsWrite from "../components/board/CommentsWrite";
+import CommentsList from "../components/board/CommentsList";
 
 
 const DetailPage = () => {
@@ -23,6 +25,8 @@ const DetailPage = () => {
         <Link to={`/board/list?id=${id}`}><p className="text-2xl font-bold pl-[15px]">{`${id} 게시판`}</p></Link>
       </div>
         <DetailWr id={id} no={no} />
+        <CommentsWrite id={id} no={no} />
+        <CommentsList id={id} no={no} />
         <List id={id} />
     </div>
   );
