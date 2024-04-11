@@ -20,17 +20,18 @@ const CommentsList = ({id, no}) => {
     }, []);
 
   return (
-    <div className='my-5'>
+    <div className='my-[30px] border-t'>
         {comments?.map((comment, index) => {
             return (
-                <div key={index} className='flex border border-slate-700 justify-between p-2'>
+                <div key={index} className='flex border-b border-slate-700 justify-between p-2'>
                     <div className='flex flex-1'>
                         <p className='mr-[15px]'>{comment.name}</p>
                         <p>{comment.content}</p>
                     </div>
                     <div className='flex'>
-                        <p>{comment.date}</p>
-                        <p>{comment.hour}</p>
+                        <p className='mr-2'>{comment.date}</p>
+                        <p className='mr-2'>{comment.hour}</p>
+                        <p className='px-[3px] border rounded-xl bg-slate-800 text-white hover:cursor-pointer'>x</p>
                     </div>
                 </div>
             )

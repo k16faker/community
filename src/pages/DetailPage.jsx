@@ -25,8 +25,8 @@ const DetailPage = () => {
         <Link to={`/board/list?id=${id}`}><p className="text-2xl font-bold pl-[15px]">{`${id} 게시판`}</p></Link>
       </div>
         <DetailWr id={id} no={no} />
-        <CommentsWrite id={id} no={no} />
         <CommentsList id={id} no={no} />
+        <CommentsWrite id={id} no={no} />
         <List id={id} />
     </div>
   );
