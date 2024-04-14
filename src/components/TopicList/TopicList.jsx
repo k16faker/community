@@ -23,9 +23,15 @@ const topicList = [
     type: "develop",
   },
   {
+    title: "게임 개발",
+    topic: "gamedev",
+    key: "4",
+    type: "develop",
+  },
+  {
     title: "주식",
     topic: "stock",
-    key: "4",
+    key: "5",
     type: "finance",
   },
 ];
