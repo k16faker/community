@@ -1,5 +1,5 @@
 
-## 인터넷 커뮤니티 클로닝
+## 인터넷 커뮤니티 만들어보기
 
 # 기술
 - React, Firebase, TailwindCSS
