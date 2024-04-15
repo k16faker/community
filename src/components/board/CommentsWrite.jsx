@@ -19,7 +19,7 @@ const CommentsWrite = ({id, no}) => {
         replies: []
       })
     });
-    alert("수정되었습니다.");
+    alert("작성되었습니다.");
     window.location.href = `/board/detail?id=${id}&no=${no}`;
   };
 
