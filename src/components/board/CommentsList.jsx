@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { db } from "../../firebase";
-import { doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 const CommentsList = ({ id, no }) => {
   const nameRef = useRef();
@@ -62,6 +62,7 @@ const CommentsList = ({ id, no }) => {
 
       await updateDoc(docRef, { comments: updatedComments });
         alert("대댓글 추가 성공");
+        window.location.href = `/board/detail?id=${id}&no=${no}`;
     } catch (error) {
       console.error("대댓글 추가 실패:", error);
     }
@@ -127,14 +128,17 @@ const CommentsList = ({ id, no }) => {
                   등록
                 </button>
               </form>
-              <div>
-                {comment.replies.map((reply, replyIndex) => (
+            </div>
+          )}
+          <div>
+                {comment.replies?.map((reply, replyIndex) => (
                   <div
                     key={replyIndex}
-                    className="flex border-b border-slate-700 justify-between p-2"
+                    className="flex border-b border-slate-700 justify-between p-2 ml-[50px]"
                   >
                     <div className="flex flex-1">
-                      <p className="mr-[15px]">{reply.name}</p>
+                      <p>ㄴ</p>
+                      <p className="mr-[15px] ml-[10px]">{reply.name}</p>
                       <p>{reply.content}</p>
                     </div>
                     <div className="flex">
@@ -147,8 +151,6 @@ const CommentsList = ({ id, no }) => {
                   </div>
                 ))}
               </div>
-            </div>
-          )}
         </div>
       ))}
     </div>
