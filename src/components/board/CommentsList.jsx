@@ -33,7 +33,12 @@ const CommentsList = ({ id, no }) => {
     );
   };
 
-  const addReply = async (commentIndex, replyName, replyContent) => {
+  const addReply = async (
+    commentIndex,
+    replyName,
+    replyContent,
+    replyPassword
+  ) => {
     try {
       const docRef = doc(db, id, no);
       const docSnap = await getDoc(docRef);
@@ -42,12 +47,9 @@ const CommentsList = ({ id, no }) => {
       const newReply = {
         name: replyName,
         content: replyContent,
-        date: new Date().toISOString().slice(0, 10), // 날짜 형식 예시
-        hour: new Date().toLocaleTimeString("en-US", {
-          hour12: true,
-          hour: "numeric",
-          minute: "numeric",
-        }), // 시간 형식 예시
+        password: replyPassword,
+        date: new Date().toLocaleDateString(),
+        hour: new Date().toLocaleTimeString(),
       };
 
       const updatedComments = data.comments.map((comment, index) => {
@@ -61,15 +63,68 @@ const CommentsList = ({ id, no }) => {
       });
 
       await updateDoc(docRef, { comments: updatedComments });
-        alert("대댓글 추가 성공");
-        window.location.href = `/board/detail?id=${id}&no=${no}`;
+      alert("대댓글 추가 성공");
+      window.location.href = `/board/detail?id=${id}&no=${no}`;
     } catch (error) {
       console.error("대댓글 추가 실패:", error);
     }
   };
 
+  const deleteComment = async (commentIndex) => {
+    try {
+      const docRef = doc(db, id, no);
+      const docSnap = await getDoc(docRef);
+      const data = docSnap.data();
+      const comment = data.comments[commentIndex];
+
+      const password = prompt("비밀번호를 입력해주세요:", "");
+      if (password === comment.password) {
+        const updatedComments = data.comments.filter(
+          (_, idx) => idx !== commentIndex
+        );
+        await updateDoc(docRef, { comments: updatedComments });
+        alert("댓글 삭제 성공");
+        window.location.reload();
+      } else {
+        alert("비밀번호가 틀렸습니다.");
+      }
+    } catch (error) {
+      console.error("댓글 삭제 실패:", error);
+    }
+  };
+
+  const deleteReply = async (commentIndex, replyIndex) => {
+    try {
+      const docRef = doc(db, id, no);
+      const docSnap = await getDoc(docRef);
+      const data = docSnap.data();
+      const reply = data.comments[commentIndex].replies[replyIndex];
+
+      const password = prompt("비밀번호를 입력해주세요:", "");
+      if (password === reply.password) {
+        const updatedComments = data.comments.map((comment, idx) => {
+          if (idx === commentIndex) {
+            const updatedReplies = comment.replies.filter(
+              (_, i) => i !== replyIndex
+            );
+            return { ...comment, replies: updatedReplies };
+          }
+          return comment;
+        });
+
+        await updateDoc(docRef, { comments: updatedComments });
+        alert("대댓글 삭제 성공");
+        window.location.reload();
+      } else {
+        alert("비밀번호가 틀렸습니다.");
+      }
+    } catch (error) {
+      console.error("대댓글 삭제 실패:", error);
+    }
+  };
+
   return (
-    <div className="my-[30px] border-t">
+    <div className="mb-[30px] border-t">
       {comments?.map((comment, index) => (
         <div key={index}>
           <div
@@ -83,7 +138,13 @@ const CommentsList = ({ id, no }) => {
             <div className="flex">
               <p className="mr-2">{comment.date}</p>
               <p className="mr-2">{comment.hour}</p>
-              <p className="px-[3px] border rounded-xl bg-slate-800 text-white hover:cursor-pointer">
+              <p
+                className="px-[3px] border rounded-xl bg-slate-800 text-white hover:cursor-pointer"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  deleteComment(index);
+                }}
+              >
                 x
               </p>
             </div>
@@ -96,7 +157,8 @@ const CommentsList = ({ id, no }) => {
                   addReply(
                     index,
                     nameRef.current.value,
-                    contentRef.current.value
+                    contentRef.current.value,
+                    passwordRef.current.value
                   );
                   nameRef.current.value = "";
                   contentRef.current.value = "";
@@ -131,26 +193,29 @@ const CommentsList = ({ id, no }) => {
             </div>
           )}
           <div>
-                {comment.replies?.map((reply, replyIndex) => (
-                  <div
-                    key={replyIndex}
-                    className="flex border-b border-slate-700 justify-between p-2 ml-[50px]"
+            {comment.replies?.map((reply, replyIndex) => (
+              <div
+                key={replyIndex}
+                className="flex border-b border-slate-700 justify-between p-2 ml-[50px]"
+              >
+                <div className="flex flex-1">
+                  <p>ㄴ</p>
+                  <p className="mr-[15px] ml-[10px]">{reply.name}</p>
+                  <p>{reply.content}</p>
+                </div>
+                <div className="flex">
+                  <p className="mr-2">{reply.date}</p>
+                  <p className="mr-2">{reply.hour}</p>
+                  <p
+                    onClick={() => deleteReply(index, replyIndex)}
+                    className="px-[3px] border rounded-xl bg-slate-800 text-white hover:cursor-pointer"
                   >
-                    <div className="flex flex-1">
-                      <p>ㄴ</p>
-                      <p className="mr-[15px] ml-[10px]">{reply.name}</p>
-                      <p>{reply.content}</p>
-                    </div>
-                    <div className="flex">
-                      <p className="mr-2">{reply.date}</p>
-                      <p className="mr-2">{reply.hour}</p>
-                      <p className="px-[3px] border rounded-xl bg-slate-800 text-white hover:cursor-pointer">
-                        x
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                    x
+                  </p>
+                </div>
               </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>
